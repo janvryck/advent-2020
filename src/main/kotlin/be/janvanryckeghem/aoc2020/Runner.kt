@@ -7,6 +7,7 @@ var solution: String? = null
 
 fun main() {
     timed { Day01("d01").solve() }
+    println(solution)
 }
 
 fun timed(solve: () -> String) {
