@@ -6,10 +6,15 @@ import org.junit.jupiter.api.Test
 internal class Day01Test {
 
     @Test
-    fun sample01() {
-        val solution = Day01("sample-d01").solve()
-
+    fun sample01_part1() {
+        val solution = Day01("sample-d01").part1()
         assertThat(solution).isEqualTo("514579")
+    }
+
+    @Test
+    fun sample01_part2() {
+        val solution = Day01("sample-d01").part2()
+        assertThat(solution).isEqualTo("241861950")
     }
 
 }
