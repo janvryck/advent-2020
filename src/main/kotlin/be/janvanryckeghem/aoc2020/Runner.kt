@@ -1,9 +1,8 @@
 package be.janvanryckeghem.aoc2020
 
-import be.janvanryckeghem.aoc2020.day01.Day01
 import kotlin.system.measureTimeMillis
 
-var solution: String? = null
+var solution: Any? = null
 
 fun main() {
     timed { Day01("d01").part1() }
@@ -12,6 +11,6 @@ fun main() {
     println("D1.2: $solution")
 }
 
-fun timed(solve: () -> String) {
+fun timed(solve: () -> Any) {
     println("Solved in ${measureTimeMillis { solution = solve() }}ms")
 }
