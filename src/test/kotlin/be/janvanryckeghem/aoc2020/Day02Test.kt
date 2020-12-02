@@ -9,5 +9,10 @@ internal class Day02Test {
         val solution = Day02("sample-d02").part1()
         assertThat(solution).isEqualTo(2)
     }
+    @Test
+    fun part2() {
+        val solution = Day02("sample-d02").part2()
+        assertThat(solution).isEqualTo(1)
+    }
 
 }

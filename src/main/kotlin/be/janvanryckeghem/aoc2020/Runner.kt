@@ -11,6 +11,8 @@ fun main() {
     println("\tD1.2: $solution")
     timed { Day02("d02").part1() }
     println("\tD2.1: $solution")
+    timed { Day02("d02").part2() }
+    println("\tD2.2: $solution")
 }
 
 fun timed(solve: () -> Any) {

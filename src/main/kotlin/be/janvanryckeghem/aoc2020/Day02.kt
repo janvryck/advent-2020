@@ -24,9 +24,20 @@ class Day02(inputFile: String) {
         return solvePart1(input)
     }
 
+    fun part2(): Int {
+        val input: String = readInputfile
+        return solvePart2(input)
+    }
+
     private fun solvePart1(input: String): Int {
         return parseInput(input)
             .filter(matchesPolicy)
+            .size
+    }
+
+    private fun solvePart2(input: String): Int {
+        return parseInput(input)
+            .filter(matchesActualPolicy)
             .size
     }
 
@@ -34,6 +45,16 @@ class Day02(inputFile: String) {
         val policy = pair.first
         val occurrences = pair.second.count { it == policy.char }
         occurrences in policy.from..policy.to
+    }
+
+    private val matchesActualPolicy = { pair: Pair<Policy, String> ->
+        val policy = pair.first
+        val password = pair.second
+
+        val firstIdxMatches = password[policy.from - 1] == policy.char
+        val secondIdxMatches = password[policy.to - 1] == policy.char
+
+        firstIdxMatches.xor(secondIdxMatches)
     }
 
     data class Policy(val from: Int, val to: Int, val char: Char)
