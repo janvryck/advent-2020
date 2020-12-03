@@ -2,7 +2,6 @@ name: runTests
 
 on:
   push:
-    branches: [ main, gh-actions ]
   workflow_dispatch:
 
 jobs:
