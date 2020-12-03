@@ -1,10 +1,9 @@
 package be.janvanryckeghem.aoc2020
 
-class Day02(inputFile: String) {
+class Day02(inputFile: String): Day(inputFile) {
 
     private val PATTERN = Regex("^(\\d+)-(\\d+) ([a-z]): ([a-z]+)$")
 
-    private val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
     private val parseInput: (String) -> List<Pair<Policy, String>> = { input ->
         input.lines()
             .filter { s -> s.isNotEmpty() }
@@ -19,23 +18,13 @@ class Day02(inputFile: String) {
         Pair(Policy(from, to, char), password)
     }
 
-    fun part1(): Int {
-        val input: String = readInputfile
-        return solvePart1(input)
-    }
-
-    fun part2(): Int {
-        val input: String = readInputfile
-        return solvePart2(input)
-    }
-
-    private fun solvePart1(input: String): Int {
+    override fun solvePart1(input: String): Int {
         return parseInput(input)
             .filter(matchesPolicy)
             .size
     }
 
-    private fun solvePart2(input: String): Int {
+    override fun solvePart2(input: String): Int {
         return parseInput(input)
             .filter(matchesActualPolicy)
             .size
