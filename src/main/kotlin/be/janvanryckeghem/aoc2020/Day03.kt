@@ -11,26 +11,36 @@ class Day03(inputFile: String) : Day(inputFile) {
 
     override fun solvePart1(input: String): Long {
         val map = parseInput(input)
-        return treesOnTrajectory(map)
+        val trajectory = Trajectory(3, 1)
+        return treesOnTrajectory(map, trajectory)
     }
 
     override fun solvePart2(input: String): Long {
         val map = parseInput(input)
-        return treesOnTrajectory(map, 1)
-            .times(treesOnTrajectory(map, 3))
-            .times(treesOnTrajectory(map, 5))
-            .times(treesOnTrajectory(map, 7))
-            .times(treesOnTrajectory(map, 1, 2))
+        val trajectories =
+            listOf(Trajectory(1, 1), Trajectory(3, 1), Trajectory(5, 1), Trajectory(7, 1), Trajectory(1, 2))
+        return trajectories
+            .map { trajectory -> treesOnTrajectory(map, trajectory) }
+            .reduce(Long::times)
     }
 
-    private fun treesOnTrajectory(map: List<CharArray>, right: Int = 3, down: Int = 1): Long {
-        val width = map[0].size
-        var col = 0
+    private fun treesOnTrajectory(map: List<CharArray>, trajectory: Trajectory): Long {
+        val upperBound = Point(map[0].size, map.size)
+        var position = Point()
         var trees: Long = 0
-        for (row in map.indices step down) {
-            if (map[row][col] == '#') trees++
-            col = col.plus(right).rem(width)
+
+        while (position.y < upperBound.y) {
+            if (map[position.y][position.x % upperBound.x] == '#') trees++
+            position = position.plus(trajectory)
         }
+
         return trees
     }
+
+    data class Point(val x: Int = 0, val y: Int = 0) {
+        operator fun plus(increment: Trajectory): Point {
+            return Point(x + increment.dX, y + increment.dY)
+        }
+    }
+    data class Trajectory(val dX: Int, val dY: Int)
 }
