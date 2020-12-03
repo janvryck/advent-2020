@@ -11,36 +11,43 @@ class Day03(inputFile: String = "d03") : Day(inputFile) {
 
     override fun solvePart1(input: String): Long {
         val map = parseInput(input)
-        val trajectory = Trajectory(3, 1)
-        return treesOnTrajectory(map, trajectory)
+        val slope = Slope(3, 1)
+        return treesOnTrajectory(map, slope)
     }
 
     override fun solvePart2(input: String): Long {
         val map = parseInput(input)
-        val trajectories =
-            listOf(Trajectory(1, 1), Trajectory(3, 1), Trajectory(5, 1), Trajectory(7, 1), Trajectory(1, 2))
-        return trajectories
-            .map { trajectory -> treesOnTrajectory(map, trajectory) }
+        val slopes = listOf(Slope(1, 1), Slope(3, 1), Slope(5, 1), Slope(7, 1), Slope(1, 2))
+        return slopes
+            .map { slope -> treesOnTrajectory(map, slope) }
             .reduce(Long::times)
     }
 
-    private fun treesOnTrajectory(map: List<CharArray>, trajectory: Trajectory): Long {
-        val upperBound = Point(map[0].size, map.size)
-        var position = Point()
-        var trees: Long = 0
-
-        while (position.y < upperBound.y) {
-            if (map[position.y][position.x % upperBound.x] == '#') trees++
-            position += trajectory
+    private fun treesOnTrajectory(map: List<CharArray>, step: Slope): Long {
+        val mountain = Mountain(map)
+        val trajectory = sequence {
+            var toboggan = Point()
+            for (row in 0 until mountain.height step step.dY) {
+                yield(toboggan)
+                toboggan += step
+            }
         }
-
-        return trees
+        return trajectory.filter { mountain.hasTree(it) }.count().toLong()
     }
 
     data class Point(val x: Int = 0, val y: Int = 0) {
-        operator fun plus(increment: Trajectory): Point {
+        operator fun plus(increment: Slope): Point {
             return Point(x + increment.dX, y + increment.dY)
         }
     }
-    data class Trajectory(val dX: Int, val dY: Int)
+    data class Slope(val dX: Int, val dY: Int)
+    data class Mountain(val map: List<CharArray>) {
+        val width: Int
+            get() = map[0].size
+        val height: Int
+            get() = map.size
+        fun hasTree(position: Point): Boolean {
+            return map[position.y][position.x % this.width] == '#'
+        }
+    }
 }

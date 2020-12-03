@@ -18,7 +18,13 @@
 ### Day 03
 #### Kotlin
 * [Data classes](https://kotlinlang.org/docs/reference/data-classes.html)  
-* [Operator overloading](https://kotlinlang.org/docs/reference/operator-overloading.html):  
+* [Operator overloading](https://kotlinlang.org/docs/reference/operator-overloading.html)
+* [Sequences](https://kotlinlang.org/docs/reference/sequences.html) *(mobbing)*
 #### GitHub
 * Set up a GH action for automated testing through Gradle
 * Set up PR checks 
+#### Mobbing
+Additional refactoring after mobbing lunch-session:
+* Rename `Trajectory` to `Slope` for more accuracy
+* Introduced `Mountain` abstraction
+* Build a *trajectory* of `Point`s for a given `Slope`
