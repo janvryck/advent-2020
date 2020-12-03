@@ -4,7 +4,7 @@ class Day01(inputFile: String): Day(inputFile) {
 
     override val DAY: String = "Day 01"
 
-    private val parseInput: (String) -> List<Int> = { input -> input.lines()
+    override val parseInput: (String) -> List<Int> = { input -> input.lines()
         .filter { s -> s.isNotEmpty() }
         .map(String::toInt)
         .distinct()

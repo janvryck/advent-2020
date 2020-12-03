@@ -4,6 +4,7 @@ abstract class Day(inputFile: String) {
 
     abstract val DAY: String
     val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
+    abstract val parseInput: (String) -> Any
 
     fun part1(): Int {
         val input: String = readInputfile

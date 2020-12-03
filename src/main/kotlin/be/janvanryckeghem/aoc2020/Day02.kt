@@ -6,7 +6,7 @@ class Day02(inputFile: String): Day(inputFile) {
 
     private val PATTERN = Regex("^(\\d+)-(\\d+) ([a-z]): ([a-z]+)$")
 
-    private val parseInput: (String) -> List<Pair<Policy, String>> = { input ->
+    override val parseInput: (String) -> List<Pair<Policy, String>> = { input ->
         input.lines()
             .filter { s -> s.isNotEmpty() }
             .map(toPolicyPasswordPair)
