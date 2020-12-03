@@ -2,6 +2,7 @@ package be.janvanryckeghem.aoc2020
 
 abstract class Day(inputFile: String) {
 
+    abstract val DAY: String
     val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
 
     fun part1(): Int {

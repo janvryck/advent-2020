@@ -2,6 +2,8 @@ package be.janvanryckeghem.aoc2020
 
 class Day02(inputFile: String): Day(inputFile) {
 
+    override val DAY: String = "Day 02"
+
     private val PATTERN = Regex("^(\\d+)-(\\d+) ([a-z]): ([a-z]+)$")
 
     private val parseInput: (String) -> List<Pair<Policy, String>> = { input ->
