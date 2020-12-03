@@ -1,4 +1,7 @@
 # Advent of Code 2020
+
+![Tests](https://github.com/janvryck/advent-2020/workflows/runTests/badge.svg?branch=main)
+
 ## Goals
 
 * Attend in the Advent of Code 2020 challenges  
