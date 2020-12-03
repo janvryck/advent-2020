@@ -2,12 +2,12 @@ name: runTests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, gh-actions ]
   workflow_dispatch:
 
 jobs:
   gradle:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup JDK
