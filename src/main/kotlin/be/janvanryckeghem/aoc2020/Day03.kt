@@ -23,16 +23,13 @@ class Day03(inputFile: String = "d03") : Day(inputFile) {
             .reduce(Long::times)
     }
 
-    private fun treesOnTrajectory(map: List<CharArray>, step: Slope): Long {
+    private fun treesOnTrajectory(map: List<CharArray>, slope: Slope): Long {
         val mountain = Mountain(map)
-        val trajectory = sequence {
-            var toboggan = Point()
-            for (row in 0 until mountain.height step step.dY) {
-                yield(toboggan)
-                toboggan += step
-            }
-        }
-        return trajectory.filter { mountain.hasTree(it) }.count().toLong()
+        return mountain
+            .trajectory(Point(), slope)
+            .filter { mountain.hasTree(it) }
+            .count()
+            .toLong()
     }
 
     data class Point(val x: Int = 0, val y: Int = 0) {
@@ -48,6 +45,16 @@ class Day03(inputFile: String = "d03") : Day(inputFile) {
             get() = map.size
         fun hasTree(position: Point): Boolean {
             return map[position.y][position.x % this.width] == '#'
+        }
+        fun trajectory(start: Point, slope: Slope): Sequence<Point> {
+            val height = this.height
+            return sequence {
+                var toboggan = start
+                for (row in 0 until height step slope.dY) {
+                    yield(toboggan)
+                    toboggan += slope
+                }
+            }
         }
     }
 }
