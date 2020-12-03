@@ -3,7 +3,8 @@ package be.janvanryckeghem.aoc2020
 abstract class Day(inputFile: String) {
 
     abstract val DAY: String
-    val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
+
+    private val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
     abstract val parseInput: (String) -> Any
 
     fun part1(): Long {

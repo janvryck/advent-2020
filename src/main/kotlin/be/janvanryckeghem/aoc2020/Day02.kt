@@ -1,6 +1,6 @@
 package be.janvanryckeghem.aoc2020
 
-class Day02(inputFile: String): Day(inputFile) {
+class Day02(inputFile: String = "d02"): Day(inputFile) {
 
     override val DAY: String = "Day 02"
 

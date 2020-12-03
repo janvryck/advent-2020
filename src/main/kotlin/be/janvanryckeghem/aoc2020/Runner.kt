@@ -2,11 +2,10 @@ package be.janvanryckeghem.aoc2020
 
 import kotlin.system.measureTimeMillis
 
-
 val puzzles: List<Day> = listOf(
-    Day01("d01"),
-    Day02("d02"),
-    Day03("d03")
+    Day01(),
+    Day02(),
+    Day03()
 )
 
 fun main() {

@@ -1,6 +1,6 @@
 package be.janvanryckeghem.aoc2020
 
-class Day03(inputFile: String) : Day(inputFile) {
+class Day03(inputFile: String = "d03") : Day(inputFile) {
     override val DAY: String = "Day 03"
 
     override val parseInput: (String) -> List<CharArray> = { input ->
