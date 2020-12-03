@@ -10,4 +10,10 @@ internal class Day03Test {
         val solution = Day03("sample-d03").part1()
         Assertions.assertThat(solution).isEqualTo(7)
     }
+
+    @Test
+    fun part2() {
+        val solution = Day03("sample-d03").part2()
+        Assertions.assertThat(solution).isEqualTo(336)
+    }
 }

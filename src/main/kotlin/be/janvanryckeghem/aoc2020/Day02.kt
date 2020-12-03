@@ -20,16 +20,18 @@ class Day02(inputFile: String): Day(inputFile) {
         Pair(Policy(from, to, char), password)
     }
 
-    override fun solvePart1(input: String): Int {
+    override fun solvePart1(input: String): Long {
         return parseInput(input)
             .filter(matchesPolicy)
             .size
+            .toLong()
     }
 
-    override fun solvePart2(input: String): Int {
+    override fun solvePart2(input: String): Long {
         return parseInput(input)
             .filter(matchesActualPolicy)
             .size
+            .toLong()
     }
 
     private val matchesPolicy = { pair: Pair<Policy, String> ->
