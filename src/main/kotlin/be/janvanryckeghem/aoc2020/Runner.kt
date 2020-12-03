@@ -5,7 +5,7 @@ import kotlin.system.measureTimeMillis
 val puzzles: List<Day> = listOf(
     Day01(),
     Day02(),
-    Day03()
+    Day03(), Day03("d03-kris")
 )
 
 fun main() {

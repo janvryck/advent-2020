@@ -31,7 +31,7 @@ class Day03(inputFile: String = "d03") : Day(inputFile) {
 
         while (position.y < upperBound.y) {
             if (map[position.y][position.x % upperBound.x] == '#') trees++
-            position = position.plus(trajectory)
+            position += trajectory
         }
 
         return trees
