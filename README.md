@@ -32,3 +32,4 @@ Additional refactoring after mobbing lunch-session:
 ### Day 04
 * [Maps](https://kotlinlang.org/docs/reference/map-operations.html)
 * [`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/) instead of `Int`/`Long`
+* [Constructors](https://kotlinlang.org/docs/reference/classes.html#constructors) and `init` block
