@@ -37,8 +37,10 @@ class Day04(inputFile: String = "d04") : Day(inputFile) {
         )
         private val parsed: Map<String, String>
         private val parsePassport = { raw: String ->
+            val safeGet: (Int) -> ((List<String>) -> String) = { idx -> { ls -> ls.getOrElse(idx) { "" } } }
             raw.split("\\s".toRegex())
-                .associateBy({ s -> s.split(":")[0] }, { s -> if (s.contains(':')) s.split(":")[1] else "" })
+                .map { s -> s.split(':')}
+                .associateBy(safeGet(0), safeGet(1))
         }
 
         init {
