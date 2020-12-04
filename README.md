@@ -28,3 +28,7 @@ Additional refactoring after mobbing lunch-session:
 * Rename `Trajectory` to `Slope` for more accuracy
 * Introduced `Mountain` abstraction
 * Build a *trajectory* of `Point`s for a given `Slope`
+
+### Day 04
+* [Maps](https://kotlinlang.org/docs/reference/map-operations.html)
+* [`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/) instead of `Int`/`Long`

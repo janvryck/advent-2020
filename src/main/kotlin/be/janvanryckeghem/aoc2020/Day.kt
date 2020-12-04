@@ -7,17 +7,17 @@ abstract class Day(inputFile: String) {
     private val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
     abstract val parseInput: (String) -> Any
 
-    fun part1(): Long {
+    fun part1(): Number {
         val input: String = readInputfile
         return solvePart1(input)
     }
 
-    fun part2(): Long {
+    fun part2(): Number {
         val input: String = readInputfile
         return solvePart2(input)
     }
 
-    abstract fun solvePart1(input: String): Long
-    abstract fun solvePart2(input: String): Long
+    abstract fun solvePart1(input: String): Number
+    abstract fun solvePart2(input: String): Number
 
 }
