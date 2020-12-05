@@ -17,10 +17,8 @@ class Day05(inputFile: String = "d05") : Day(inputFile) {
     }
 
     fun toSeatId(seat: String): Int {
-        return seat.replace('F', '0')
-            .replace('B', '1')
-            .replace('L', '0')
-            .replace('R', '1')
+        return seat.replace("[FL]".toRegex(), "0")
+            .replace("[BR]".toRegex(), "1")
             .toInt(2)
     }
 
