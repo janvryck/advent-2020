@@ -6,7 +6,8 @@ val puzzles: List<Day> = listOf(
     Day01(),
     Day02(),
     Day03(), Day03("d03-kris"),
-    Day04()
+    Day04(),
+    Day05()
 )
 
 fun main() {
