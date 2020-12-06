@@ -6,14 +6,13 @@ abstract class Day(inputFile: String) {
 
     private val readInputfile = this::class.java.classLoader.getResource(inputFile)!!.readText()
     abstract val parseInput: (String) -> Any
+    val input: String = readInputfile
 
     fun part1(): Number {
-        val input: String = readInputfile
         return solvePart1(input)
     }
 
     fun part2(): Number {
-        val input: String = readInputfile
         return solvePart2(input)
     }
 
