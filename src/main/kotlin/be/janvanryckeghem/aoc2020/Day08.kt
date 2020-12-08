@@ -12,72 +12,68 @@ class Day08(inputFile: String = "d08") : Day(inputFile) {
         val bootCode = parseInput(input)
         return Program(bootCode)
             .execute()
-            .result
+            .accumulator
     }
 
     override fun solvePart2(input: String): Number {
         val bootCode = parseInput(input).toMutableList()
         return Program(bootCode)
             .fixCorruption()
-            .result
+            .accumulator
     }
 
     data class Instruction(val operation: String, val argument: Int)
     data class Program(val instructions: List<Instruction>) {
-
         fun fixCorruption(): Execution {
             val instructions = this.instructions.toMutableList()
             for (i in instructions.indices) {
-                when(instructions[i].operation) {
-                    "jmp" -> instructions[i] = Instruction("nop", instructions[i].argument)
-                    "nop" -> instructions[i] = Instruction("jmp", instructions[i].argument)
-                }
-
+                switchJumpAndNop(instructions, i)
                 val execution = execute(instructions)
                 if (execution.idx == instructions.size) {
                     return execution
                 }
-
-                when(instructions[i].operation) {
-                    "jmp" -> instructions[i] = Instruction("nop", instructions[i].argument)
-                    "nop" -> instructions[i] = Instruction("jmp", instructions[i].argument)
-                }
+                switchJumpAndNop(instructions, i)
             }
-
             throw IllegalStateException("Could not fix program")
+        }
+
+        private fun switchJumpAndNop(instructions: MutableList<Instruction>, idx: Int) {
+            when (instructions[idx].operation) {
+                "jmp" -> instructions[idx] = Instruction("nop", instructions[idx].argument)
+                "nop" -> instructions[idx] = Instruction("jmp", instructions[idx].argument)
+            }
         }
 
         fun execute(instructions: List<Instruction> = this.instructions): Execution {
             val visitedInstructions = mutableListOf<Int>()
-            var accumulator = 0
-            var idx = 0
-            while (idx !in visitedInstructions && idx in instructions.indices) {
-                visitedInstructions.add(idx)
-                val instruction = instructions[idx]
-                val pair = processInstruction(instruction, accumulator, idx)
-                accumulator = pair.first
-                idx = pair.second
+            var execution = Execution()
+            while (execution.idx !in visitedInstructions && execution.idx in instructions.indices) {
+                visitedInstructions.add(execution.idx)
+                val instruction = instructions[execution.idx]
+                execution = processInstruction(instruction, execution)
             }
-            return Execution(idx, accumulator)
+            return execution
         }
 
-        private fun processInstruction(instruction: Instruction, accumulator: Int, idx: Int): Pair<Int, Int> {
-            var accumulator1 = accumulator
-            var idx1 = idx
+        private fun processInstruction(instruction: Instruction, execution: Execution): Execution {
+            var idx = execution.idx
+            var accumulator = execution.accumulator
             when (instruction.operation) {
                 "acc" -> {
-                    accumulator1 += instruction.argument
-                    idx1++
+                    accumulator += instruction.argument
+                    idx++
                 }
                 "jmp" -> {
-                    idx1 += instruction.argument
+                    idx += instruction.argument
                 }
                 else -> {
-                    idx1++
+                    idx++
                 }
             }
-            return Pair(accumulator1, idx1)
+            return Execution(idx, accumulator)
+
         }
     }
-    data class Execution(val idx: Int, val result: Int)
+
+    data class Execution(val idx: Int = 0, val accumulator: Int = 0)
 }
