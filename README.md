@@ -33,3 +33,6 @@ Additional refactoring after mobbing lunch-session:
 * [Maps](https://kotlinlang.org/docs/reference/map-operations.html)
 * [`Number`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/) instead of `Int`/`Long`
 * [Constructors](https://kotlinlang.org/docs/reference/classes.html#constructors) and `init` block
+
+### Day 11
+* [Companion objects](https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects) in lieu of static functions and constants
