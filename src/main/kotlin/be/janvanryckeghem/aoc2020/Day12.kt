@@ -21,24 +21,24 @@ class Day12(inputFile: String = "d12") : Day(inputFile) {
         return boat.manhattanDistance()
     }
 
-    data class Boat(var direction: Point = Direction.EAST.point) {
+    data class Boat(var direction: Point = Heading.EAST.point) {
         var position: Point = Point()
 
         fun move(instruction: Instruction, waypoint: Boolean = false) {
             when (instruction.action) {
                 Action.FORWARD -> position += direction * instruction.value
                 Action.NORTH ->
-                    if (waypoint) direction += Direction.NORTH * instruction.value
-                    else position += Direction.NORTH * instruction.value
+                    if (waypoint) direction += Heading.NORTH * instruction.value
+                    else position += Heading.NORTH * instruction.value
                 Action.EAST ->
-                    if (waypoint) direction += Direction.EAST * instruction.value
-                    else position += Direction.EAST * instruction.value
+                    if (waypoint) direction += Heading.EAST * instruction.value
+                    else position += Heading.EAST * instruction.value
                 Action.SOUTH ->
-                    if (waypoint) direction += Direction.SOUTH * instruction.value
-                    else position += Direction.SOUTH * instruction.value
+                    if (waypoint) direction += Heading.SOUTH * instruction.value
+                    else position += Heading.SOUTH * instruction.value
                 Action.WEST ->
-                    if (waypoint) direction += Direction.WEST * instruction.value
-                    else position += Direction.WEST * instruction.value
+                    if (waypoint) direction += Heading.WEST * instruction.value
+                    else position += Heading.WEST * instruction.value
                 Action.LEFT -> direction = when (instruction.value) {
                     90 -> direction.turnLeft()
                     180 -> direction.turnAround()
@@ -76,7 +76,7 @@ class Day12(inputFile: String = "d12") : Day(inputFile) {
         }
     }
 
-    enum class Direction(val point: Point) {
+    enum class Heading(val point: Point) {
         NORTH(Point(0, 1)),
         EAST(Point(1, 0)),
         SOUTH(Point(0, -1)),
