@@ -3,7 +3,7 @@ package be.janvanryckeghem.aoc2020
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class Day11Test{
+internal class Day11Test {
 
     @Test
     fun part1() {
