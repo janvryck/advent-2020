@@ -14,12 +14,13 @@ class Day15(inputFile: String = "d15") : Day(inputFile) {
 
     fun memoryGame(input: List<Int>, turns: Int = 2020): Int {
         val memory = input.withIndex().associateBy({ it.value }, { it.index + 1 }).toMutableMap()
-        var last = input.last()
-        for (turn in memory.size until turns) {
-            val current = last
-            last = if (current in memory) turn - memory[current]!! else 0
-            memory[current] = turn
+        var lastNumber = input.last()
+        for (currentTurn in memory.size until turns) {
+            memory.compute(lastNumber) { _, lastTurn ->
+                lastNumber = currentTurn.minus(lastTurn ?: currentTurn)
+                currentTurn
+            }
         }
-        return last
+        return lastNumber
     }
 }
